@@ -1,0 +1,4 @@
+interface:
+  display_name: "NPM Package Guard"
+  short_description: "Pre-install npm supply-chain checks"
+  default_prompt: "Use $npm-package-guard to audit this repository before I install any npm packages."
