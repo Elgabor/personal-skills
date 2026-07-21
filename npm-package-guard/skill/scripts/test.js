@@ -287,6 +287,9 @@ test('hook manager requires consent and preserves existing configuration', () =>
   const afterRemove = JSON.parse(fs.readFileSync(path.join(dir, 'hooks.json'), 'utf8'));
   assert.strictEqual(afterRemove.hooks.PreToolUse[0].hooks.some(hook => hook.command === '/existing/guard.sh'), true);
   assert.strictEqual(hookManager.isEnabled(afterRemove), false);
+
+  const cleaned = hookManager.removeHook(hookManager.addHook({}));
+  assert.deepStrictEqual(cleaned, {});
   fs.rmSync(dir, { recursive: true, force: true });
 });
 

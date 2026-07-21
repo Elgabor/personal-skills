@@ -55,6 +55,8 @@ function removeHook(config) {
     if (!entry || entry.matcher !== 'Bash' || !Array.isArray(entry.hooks)) return entry;
     return { ...entry, hooks: entry.hooks.filter(hook => !isOurHook(hook)) };
   }).filter(entry => !(entry && entry.matcher === 'Bash' && Array.isArray(entry.hooks) && entry.hooks.length === 0 && Object.keys(entry).every(key => ['matcher', 'hooks'].includes(key))));
+  if (next.hooks.PreToolUse.length === 0) delete next.hooks.PreToolUse;
+  if (Object.keys(next.hooks).length === 0) delete next.hooks;
   return next;
 }
 
