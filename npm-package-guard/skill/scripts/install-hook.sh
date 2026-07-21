@@ -3,7 +3,8 @@
 # This script runs before every Bash tool call. Keep the non-install path cheap.
 set +e
 
-payload=$(</dev/stdin)
+payload=''
+IFS= read -r -d '' payload
 
 # Inspect the raw JSON first. JSON preserves ordinary command spaces, so a
 # non-match proves this is not one of the install forms without starting jq or
