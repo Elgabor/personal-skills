@@ -1,0 +1,19 @@
+{
+  "repository": "https://github.com/davidondrej/skills",
+  "revision": "cd76b13595e8d370dd68c5fe5b48b00afc17d392",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 David Ondrej",
+  "upstream_sha256": {
+    "hooks/deny-dangerous.sh": "18a8d847d9ce40c5fa4ee56a9aa08d5c3b38b130f8104817c9d9d647aefe58c2",
+    "hooks/dangerous-patterns.txt": "2e80a48d963ca08cfcb925c090a475bb099a269984432e93cd7c01bc97d568b6",
+    "hooks/test-guard.sh": "a72951952c1e92a07e2822d5ce82fa2a6991a551eb24464edffb8be534e64969",
+    "LICENSE": "1bd321a3b9cfa8d4af2105e20edd69d830df0b28e83a1b0255558f888e493981"
+  },
+  "local_modifications": [
+    "Guard reads the sibling patterns file for checkout and installation portability.",
+    "Tests read the sibling guard; corrected upstream JSON matcher and multiline fixture escaping.",
+    "Added Pi adapter and explicit-only maintenance skill; adapter error message made user-neutral."
+  ],
+  "local_contributions": "Lorenzo Borgato; MIT, see repository LICENSE",
+  "runtime_installation_state": "Not included in public package"
+}

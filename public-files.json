@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "files": [
+    ".github/workflows/ci.yml",
+    ".gitignore",
+    "LICENSE",
+    "README.md",
+    "command-guard/LICENSE",
+    "command-guard/README.md",
+    "command-guard/UPSTREAM.json",
+    "command-guard/adapters/pi/command-guard.ts",
+    "command-guard/hooks/dangerous-patterns.txt",
+    "command-guard/hooks/deny-dangerous.sh",
+    "command-guard/hooks/test-guard.sh",
+    "command-guard/skill/SKILL.md",
+    "command-guard/skill/agents/openai.yaml",
+    "npm-package-guard/LICENSE",
+    "npm-package-guard/README.md",
+    "npm-package-guard/bin/cli.js",
+    "npm-package-guard/package-lock.json",
+    "npm-package-guard/package.json",
+    "npm-package-guard/skill/SKILL.md",
+    "npm-package-guard/skill/agents/openai.yaml",
+    "npm-package-guard/skill/allowlist.txt",
+    "npm-package-guard/skill/scripts/install-hook.sh",
+    "npm-package-guard/skill/scripts/manage-hook.js",
+    "npm-package-guard/skill/scripts/npm-package-guard.js",
+    "npm-package-guard/skill/scripts/test.js",
+    "npm-package-guard/tests/cli.test.js",
+    "public-files.json",
+    "scripts/check-publication.py"
+  ]
+}
