@@ -24,9 +24,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Elgabor/personal-skills.git",
-    "directory": "npm-package-guard"
+    "directory": "created-by-me/npm-package-guard"
   },
-  "homepage": "https://github.com/Elgabor/personal-skills/tree/main/npm-package-guard#readme",
+  "homepage": "https://github.com/Elgabor/personal-skills/tree/main/created-by-me/npm-package-guard#readme",
   "bugs": {
     "url": "https://github.com/Elgabor/personal-skills/issues"
   },

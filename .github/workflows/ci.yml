@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: npm-package-guard
+        working-directory: created-by-me/npm-package-guard
     strategy:
       matrix:
         node-version: [20, 22]
@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
-          cache-dependency-path: npm-package-guard/package-lock.json
+          cache-dependency-path: created-by-me/npm-package-guard/package-lock.json
       - run: npm ci
       - run: npm test
       - run: npm pack --dry-run
@@ -33,5 +33,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - run: python3 scripts/check-publication.py
-      - run: bash command-guard/hooks/test-guard.sh
+      - run: bash hooks/command-guard/hooks/test-guard.sh

@@ -182,7 +182,7 @@ hygiene.
 
 ```bash
 git clone https://github.com/Elgabor/personal-skills.git
-cd personal-skills/npm-package-guard
+cd personal-skills/created-by-me/npm-package-guard
 npm test
 npm pack --dry-run
 ```
