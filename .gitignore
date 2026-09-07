@@ -1,44 +1,43 @@
-# Only reviewed public package files are eligible for Git.
+# Pubblicazione esplicita: tutti i nuovi file sono esclusi per default.
+# !*/ permette di raggiungere le sottocartelle, senza autorizzarne i file.
 *
 !*/
-!/.github/workflows/ci.yml
-!/.gitignore
+
+# Documenti pubblici della repository.
 !/LICENSE
 !/README.md
-!/hooks/command-guard/LICENSE
-!/hooks/command-guard/README.md
-!/hooks/command-guard/UPSTREAM.json
-!/hooks/command-guard/adapters/pi/command-guard.ts
-!/hooks/command-guard/hooks/dangerous-patterns.txt
-!/hooks/command-guard/hooks/deny-dangerous.sh
-!/hooks/command-guard/hooks/test-guard.sh
-!/hooks/command-guard/skill/SKILL.md
-!/hooks/command-guard/skill/agents/openai.yaml
-!/created-by-me/npm-package-guard/LICENSE
-!/created-by-me/npm-package-guard/README.md
-!/created-by-me/npm-package-guard/bin/cli.js
-!/created-by-me/npm-package-guard/package-lock.json
-!/created-by-me/npm-package-guard/package.json
-!/created-by-me/npm-package-guard/skill/SKILL.md
-!/created-by-me/npm-package-guard/skill/agents/openai.yaml
-!/created-by-me/npm-package-guard/skill/allowlist.txt
-!/created-by-me/npm-package-guard/skill/scripts/install-hook.sh
-!/created-by-me/npm-package-guard/skill/scripts/manage-hook.js
-!/created-by-me/npm-package-guard/skill/scripts/npm-package-guard.js
-!/created-by-me/npm-package-guard/skill/scripts/test.js
-!/created-by-me/npm-package-guard/tests/cli.test.js
+!/.gitignore
 
-# Personal management, catalogues, overrides, and unreviewed skills.
-.local/
-local/
-/scripts/
-.env
-.env.*
-*.pem
-*.key
-*.p12
-*.pfx
-.DS_Store
-node_modules/
-__pycache__/
-*.tgz
+# Skill pubbliche: aggiungere qui solo file revisionati.
+# anti-ai-slop-writing
+!/created-by-me/anti-ai-slop-writing/LICENSE
+!/created-by-me/anti-ai-slop-writing/SKILL.md
+!/created-by-me/anti-ai-slop-writing/agents/openai.yaml
+!/created-by-me/anti-ai-slop-writing/evals/evals.json
+!/created-by-me/anti-ai-slop-writing/references/language-signals.md
+!/created-by-me/anti-ai-slop-writing/references/linguistic-patterns.md
+
+# effective-agent-skills
+!/created-by-me/effective-agent-skills/LICENSE
+!/created-by-me/effective-agent-skills/SKILL.md
+
+# pi-workflow-router
+!/created-by-me/pi-workflow-router/LICENSE
+!/created-by-me/pi-workflow-router/README.md
+!/created-by-me/pi-workflow-router/SKILL.md
+
+# Inventario e skill personali: mantenere esclusi dalla pubblicazione.
+/catalog.json
+/created-by-me/obsidian-knowledge-lifecycle/
+/created-by-me/second-subconscious/
+/created-by-me/social-operating-system/
+
+# File locali, credenziali e cache: esclusioni di difesa aggiuntive.
+**/.DS_Store
+**/.env
+**/.env.*
+**/*.key
+**/*.pem
+**/__pycache__/
+
+# Le regole non rimuovono file gia tracciati o contenuti nello storico Git.

@@ -1,5 +1,0 @@
-# One trusted package per line. Examples:
-# lodash
-# @types/node
-# react@19.1.0
-# @scope/package@2.0.0

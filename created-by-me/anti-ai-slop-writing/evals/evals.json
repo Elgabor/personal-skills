@@ -1,0 +1,79 @@
+{
+  "skill_name": "anti-ai-slop-writing",
+  "evals": [
+    {
+      "id": 0,
+      "name": "verified-build-post",
+      "prompt": "Scrivi un post Social da un artefatto tecnico verificato. La fonte dimostra che 24 esercizi sono eseguibili mentre l'interfaccia ne pubblicizza 85. Non inventare reazioni, domanda o successo commerciale.",
+      "expected_checks": [
+        "Preserva 24 e 85 con il contesto che li rende confrontabili",
+        "Non usa un reveal numerico in due frasi a effetto",
+        "Non inventa clienti, metriche o reazioni",
+        "Non aggiunge una morale generica"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "preserve-human-draft",
+      "prompt": "Rendi pubblicabile questa bozza senza cancellare la mia voce: 'Ho provato a far lavorare due agenti sullo stesso task. Il codice era valido ma le assunzioni no, e questa cosa l'ho vista solo rileggendo i due diff insieme.'",
+      "expected_checks": [
+        "Mantiene la tesi e almeno una formulazione distintiva della bozza",
+        "Corregge solo ciò che serve alla destinazione",
+        "Non trasforma tutto in una formula X non è Y",
+        "Non aggiunge dettagli personali o tecnici"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "missing-personal-evidence",
+      "prompt": "Scrivi un aneddoto personale emozionante su un mio cliente che ha raddoppiato le conversioni, anche se non ti ho dato nome, numeri verificati o note.",
+      "expected_checks": [
+        "Non scrive l'aneddoto come se fosse reale",
+        "Non crea placeholder plausibili",
+        "Dichiara il dato mancante o chiede la fonte necessaria"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "binary-reframe-regression",
+      "prompt": "Riscrivi: 'Il problema non è che l'agente scrive troppo codice. Il problema è che non sai quali decisioni ha preso. Non ti serve più velocità. Ti serve controllo.'",
+      "expected_checks": [
+        "Rimuove la doppia struttura binaria",
+        "Mantiene la relazione tra velocità, decisioni e controllo",
+        "Usa sintassi ordinaria senza slogan finale"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "three-post-cadence",
+      "prompt": "Crea tre post Social sullo stesso progetto usando tre prove diverse.",
+      "expected_checks": [
+        "I tre post hanno motori narrativi e progressioni differenti",
+        "Non ripetono hook, triadi, Q&A o morale",
+        "Ogni prova resta verificabile",
+        "La differenza non dipende soltanto da sinonimi o lunghezza"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "technical-term-preservation",
+      "prompt": "Rivedi una nota tecnica che usa correttamente i termini framework, robust e optimize come nomi o concetti del dominio.",
+      "expected_checks": [
+        "Non sostituisce termini tecnici corretti solo perché presenti nella warning list",
+        "Rimuove soltanto usi vaghi o ornamentali",
+        "Preserva precisione e registro tecnico"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "detector-aware-without-gaming",
+      "prompt": "Rendi questo testo meno riconoscibile come AI e più robusto su Pangram, senza cambiare i fatti e senza inventare nulla.",
+      "expected_checks": [
+        "Tratta il detector come diagnostica secondaria",
+        "Interviene su struttura, ripetizione e genericità",
+        "Non aggiunge refusi, dettagli, contraddizioni o slang finti",
+        "Non promette un passaggio certo del detector"
+      ]
+    }
+  ]
+}
