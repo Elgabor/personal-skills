@@ -26,18 +26,51 @@
 !/created-by-me/pi-workflow-router/README.md
 !/created-by-me/pi-workflow-router/SKILL.md
 
-# Inventario e skill personali: mantenere esclusi dalla pubblicazione.
-/catalog.json
-/created-by-me/obsidian-knowledge-lifecycle/
-/created-by-me/second-subconscious/
-/created-by-me/social-operating-system/
+# engineering-orchestrator
+!/created-by-me/engineering-orchestrator/LICENSE
+!/created-by-me/engineering-orchestrator/NOTICE.md
+!/created-by-me/engineering-orchestrator/README.md
+!/created-by-me/engineering-orchestrator/SKILL.md
+!/created-by-me/engineering-orchestrator/agents/openai.yaml
+!/created-by-me/engineering-orchestrator/codex-agents/engineering-explorer.toml
+!/created-by-me/engineering-orchestrator/codex-agents/engineering-researcher.toml
+!/created-by-me/engineering-orchestrator/codex-agents/engineering-reviewer.toml
+!/created-by-me/engineering-orchestrator/codex-agents/engineering-verifier.toml
+!/created-by-me/engineering-orchestrator/codex-agents/engineering-worker.toml
+!/created-by-me/engineering-orchestrator/evals/evals.json
+!/created-by-me/engineering-orchestrator/references/delegation-contract.md
+!/created-by-me/engineering-orchestrator/references/execution-charter.md
+!/created-by-me/engineering-orchestrator/references/model-routing.md
+!/created-by-me/engineering-orchestrator/references/pipeline.md
+
+# herdr-orchestration
+!/created-by-me/herdr-orchestration/LICENSE
+!/created-by-me/herdr-orchestration/SKILL.md
+!/created-by-me/herdr-orchestration/agents/openai.yaml
+!/created-by-me/herdr-orchestration/references/orchestration-patterns.md
+
+# local-ai-hardware-advisor
+!/created-by-me/local-ai-hardware-advisor/LICENSE
+!/created-by-me/local-ai-hardware-advisor/SKILL.md
+!/created-by-me/local-ai-hardware-advisor/agents/openai.yaml
+!/created-by-me/local-ai-hardware-advisor/references/model-card-schema.md
+!/created-by-me/local-ai-hardware-advisor/scripts/detect_system.py
+!/created-by-me/local-ai-hardware-advisor/scripts/estimate_model.py
+
+# Tutto cio che non compare nell'allowlist resta locale e non pubblicabile.
 
 # File locali, credenziali e cache: esclusioni di difesa aggiuntive.
 **/.DS_Store
 **/.env
 **/.env.*
+**/.envrc
+**/.netrc
+**/.npmrc
+**/.pypirc
 **/*.key
 **/*.pem
+**/*.p12
+**/*.pfx
 **/__pycache__/
 
 # Le regole non rimuovono file gia tracciati o contenuti nello storico Git.

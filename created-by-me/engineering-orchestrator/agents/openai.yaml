@@ -1,0 +1,6 @@
+interface:
+  display_name: "Engineering Orchestrator"
+  short_description: "Owner-controlled engineering team and model routing"
+  default_prompt: "Use $engineering-orchestrator to propose an execution charter and an engineering plan. Wait for my approval at both gates before delegated or mutating work."
+policy:
+  allow_implicit_invocation: true

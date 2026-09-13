@@ -1,0 +1,6 @@
+interface:
+  display_name: "Herdr Orchestration"
+  short_description: "Coordinate multi-harness agents through Herdr"
+  default_prompt: "Use $herdr-orchestration to design and run a Herdr-based multi-agent workflow. Keep one writer per checkout, preserve owner approvals, and report the exact topology before mutating work."
+policy:
+  allow_implicit_invocation: true

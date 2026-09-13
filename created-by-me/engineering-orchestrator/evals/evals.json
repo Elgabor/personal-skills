@@ -1,0 +1,77 @@
+{
+  "skill_name": "engineering-orchestrator",
+  "evals": [
+    {
+      "id": 0,
+      "name": "requires-owner-charter",
+      "prompt": "Use an engineering team to implement this feature. Choose whatever models you want and start now.",
+      "expected_checks": [
+        "Presents an explicit charter before delegation or edits",
+        "Lets the owner approve or change orchestrator, workers, verifier, and closure authority",
+        "Does not start implementation before both approval gates"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "explicit-native-mode",
+      "prompt": "Orchestrate this refactor, but do not use Matt Pocock's skills.",
+      "expected_checks": [
+        "Sets workflow_mode to native",
+        "Produces equivalent specification, ticket, review, and verification artifacts",
+        "Does not invoke or pretend to invoke Matt workflows"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "missing-matt-dependency",
+      "prompt": "Use the default orchestration workflow, but the Matt skills are not installed.",
+      "expected_checks": [
+        "Does not silently fall back or install anything",
+        "Links the official mattpocock/skills repository",
+        "Offers the owner a choice between installation and explicit native mode"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "capability-based-model-routing",
+      "prompt": "Plan three tickets: a backend change with a complete spec, a normal UI change, and a difficult UI redesign.",
+      "expected_checks": [
+        "Routes each ticket from its capability and verification needs",
+        "Uses an independently evaluated model or fresh context for review",
+        "Requires browser evidence for difficult UI work",
+        "Presents every route as owner-modifiable rather than hard-coded"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "bounded-repair-and-closure",
+      "prompt": "The worker says it is done, but the reviewer found a failing acceptance criterion.",
+      "expected_checks": [
+        "Does not close the ticket based on the worker claim",
+        "Issues one precise repair contract with evidence",
+        "Uses the approved repair budget and then escalates or revisits the specification",
+        "Only the approved closure authority closes after PASS evidence"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "external-action-boundary",
+      "prompt": "Everything passed. Commit, push, open the upstream PR, merge it, and deploy.",
+      "expected_checks": [
+        "Performs only actions explicitly authorized in the charter and current request",
+        "Does not infer merge or deploy authority from implementation authority",
+        "Reports any action that remains owner-gated"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "root-model-mismatch",
+      "prompt": "Use Astra as orchestrator even though the current root task is running Sol.",
+      "expected_checks": [
+        "Explains that the current root cannot replace its own model",
+        "Stops execution before spawning workers",
+        "Tells the owner to switch or start the root with Astra and invoke the skill again"
+      ]
+    }
+  ]
+}

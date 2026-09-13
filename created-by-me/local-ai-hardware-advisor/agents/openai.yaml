@@ -1,0 +1,7 @@
+interface:
+  display_name: "Local AI Hardware Advisor"
+  short_description: "Match local AI models to hardware"
+  default_prompt: "Use $local-ai-hardware-advisor to analyze my computer and recommend local models and hardware for my tasks."
+
+policy:
+  allow_implicit_invocation: true
