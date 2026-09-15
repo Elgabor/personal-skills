@@ -1,18 +1,21 @@
 ---
 name: pi-workflow-router
-description: Route each new request to the smallest appropriate Matt Pocock workflow, or direct handling when no workflow adds value. Use at the beginning of every substantive user task.
+description: Route a coding request to the smallest appropriate Matt Pocock workflow, or direct handling when no workflow adds value. Use only when the user explicitly asks for this router or a Matt workflow, or when a coding task genuinely needs workflow selection; do not invoke it for every request.
 ---
 
 # Pi Workflow Router
 
-Choose the workflow before acting, without expanding the user's scope.
+When this skill is selected, choose the workflow before acting without expanding
+the user's scope. Do not run this router for general conversation, research,
+writing, translation, project administration, or a simple coding change whose
+route is already clear.
 
 1. Read `../ask-matt/SKILL.md` completely as the canonical routing map.
 2. Inspect only the context needed to distinguish the route.
 3. Select one primary workflow. Use direct handling for simple questions,
    translations, tiny edits, and other self-contained work where a staged
    workflow adds no value.
-4. For a substantive task, lead with one concise Italian line:
+4. When routing is useful, lead with one concise Italian line:
    `Workflow: <skill or sequence> - <why it fits>.`
 5. Continue immediately when the user's request already authorizes the next
    action. Ask only for a decision that materially changes the result, safety,

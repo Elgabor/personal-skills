@@ -1,7 +1,9 @@
 # Pi Workflow Router
 
-Router opinionato per instradare le richieste in Pi. Il messaggio iniziale di
-routing è in italiano; le richieste semplici possono essere gestite direttamente.
+Router opinionato per instradare in Pi i task di coding che richiedono una
+scelta fra i workflow Matt Pocock. Il messaggio iniziale di routing è in
+italiano; non si attiva per ogni richiesta e i task con un percorso già chiaro
+possono essere gestiti direttamente.
 
 Dipende da `ask-matt` e dalle skill di **Matt Pocock**:
 [mattpocock/skills](https://github.com/mattpocock/skills).
