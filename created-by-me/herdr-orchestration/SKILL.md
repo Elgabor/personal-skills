@@ -1,96 +1,97 @@
 ---
 name: herdr-orchestration
-description: Orchestrate multi-harness coding agents with Herdr workspaces, panes, agent state, and CLI automation while preserving owner approval, worktree isolation, and clear worker roles.
+description: Coordinate coding agents through Herdr with event-driven waits, compact handoffs, and owner-controlled acceptance. Use when the user explicitly asks for Herdr orchestration, multi-harness delegation, or an owner-worker ticket loop; it complements rather than replaces specification and engineering workflow skills.
 metadata:
-  short-description: Orchestrate agents with Herdr
+  short-description: Low-overhead Herdr agent coordination
 ---
 
 # Herdr Orchestration
 
-Use this skill when the user wants to run, coordinate, monitor, or script multiple coding agents through Herdr. Herdr is the terminal runtime and control surface; the underlying harnesses such as Codex, Claude Code, Pi, OpenCode, Cursor Agent, Qwen, Gemini, or others still own their own model, permissions, memory, tools, and side effects.
+Herdr is the terminal control plane. Each harness still owns its model,
+permissions, tools, memory, and side effects. The owner/orchestrator owns task
+selection, acceptance, commits, and the final result.
 
-Authoritative docs to refresh when behavior matters:
+## Activation boundary
 
-- Concepts: `https://herdr.dev/docs/concepts/`
-- Agents: `https://herdr.dev/docs/agents/`
-- Agent automation: `https://herdr.dev/docs/agent-automation/`
-- Integrations: `https://herdr.dev/docs/integrations/`
-- Session state: `https://herdr.dev/docs/session-state/`
-
-## Mental Model
-
-Herdr has three orchestration primitives:
-
-- Layout: workspaces, tabs, and pane topology.
-- Pane: a raw terminal that can run commands, receive input, and expose output.
-- Agent: a recognized process inside a pane with lifecycle state such as `working`, `blocked`, `done`, `idle`, or `unknown`.
-
-Treat workspace labels, pane IDs, pane titles, and agent names as runtime facts. Discover them from Herdr command output or the visible UI instead of guessing. Use existing labels when they are clear. Rename panes or agents only when the user asks, when the orchestration script created the pane itself, or after confirming a proposed mapping.
-
-## Operating Contract
-
-Before spawning or prompting workers, establish a compact control contract:
-
-- Objective: what outcome this orchestration run should produce.
-- Authority: what may be changed now, and what needs the user's approval.
-- Topology: which repo, branch, worktree, workspace, panes, and agent roles are in play.
-- Pane map: what each existing panel is already for, or which role the user wants it to have.
-- Roles: one owner/orchestrator, at most one writer per checkout, reviewers read-only unless explicitly promoted.
-- Stop gates: approval requests, failed tests, merge conflicts, external actions, credentials, destructive changes, or unclear ownership.
-
-Herdr visibility is not permission. It does not grant approval for pushes, deploys, merges, purchases, account changes, credential access, broad cleanup, or destructive filesystem actions.
-
-## Safe Topologies
-
-Prefer these patterns:
-
-- One checkout: one writer agent, one read-only reviewer agent, one shell/test pane.
-- Multiple writers: separate Git worktrees or separate repos; never two writers in the same checkout.
-- Planning and review: use read-only prompts and say explicitly that the worker must not edit files.
-- Long-running tests or servers: use pane commands, not agent commands, unless a recognized agent owns the process.
-
-When the user asks for autonomous orchestration, keep the root agent responsible for integration, verification, and final report. Worker success is evidence, not acceptance.
-
-## Herdr Checks
-
-At the start of a real run, verify the live state with the cheapest checks that fit the task:
+Designing a workflow can happen anywhere. Before controlling Herdr, require:
 
 ```sh
-command -v herdr
-herdr --version
-herdr integration status
+test "${HERDR_ENV:-}" = 1
 ```
 
-Check needed harnesses with `command -v`, for example `command -v codex` or `command -v opencode`. If a harness is absent, report that blocker instead of substituting a different one silently.
+If it fails, stop instead of controlling another Herdr session from outside.
+Use the requested harness, provider, model, and effort exactly; report an
+unavailable choice rather than substituting silently.
 
-Install or update Herdr integrations only when the user asks or when the current task explicitly includes setup. Integration installs edit the target harness config, so describe the affected harness first.
+## Establish the run
 
-## Orchestration Loop
+Record only what changes decisions:
 
-Use this loop for modern high-capability models:
+- objective and verifiable stopping condition;
+- authority and actions that still require approval;
+- repo, branch or worktree, current commit, and one writer per checkout;
+- named owner, implementer, and optional researcher or reviewer;
+- ticket source, verification commands, repair budget, and external actions.
 
-1. Design the topology and role prompts in plain language.
-2. Reuse existing Herdr panes by their visible names or pane IDs. If the user already arranged panels and their purpose is unclear, ask the user what each panel should do before launching workers.
-3. Prompt workers with bounded scope, output contract, and permission limits.
-4. Wait for exact lifecycle states; treat `unknown` as inconclusive.
-5. Read worker output before retrying after a timeout or stalled prompt.
-6. Integrate results in the orchestrator; do not let workers merge their own conclusions.
-7. Verify with project-native tests and inspect Git state before reporting completion.
+Reuse clear pane and agent names. Ask for a mapping only when existing panes are
+ambiguous. Herdr visibility never authorizes push, merge, deploy, installation,
+credential access, destructive cleanup, or approval dialogs.
 
-Never retry a prompt blindly after `timeout` or `agent_prompt_stalled`: the input may already have been sent. Read the agent or pane first.
+## Event-driven loop
 
-## Prompt Contracts
+For each bounded unit of work:
 
-Worker prompts should include:
+1. Give the worker one complete prompt with scope, acceptance criteria,
+   boundaries, verification, and the compact handoff contract.
+2. Submit and wait atomically with `agent prompt --wait`. While the worker is
+   `working`, leave it alone.
+3. If the host exposes an ongoing process handle, wait on that same handle with
+   the longest supported wait. Do not replace it with state, pane, or log polls.
+4. On `done` or `idle`, read the compact handoff and inspect only the relevant
+   diff, files, and test evidence.
+5. Decide `ACCEPT`, `REPAIR`, `RESEARCH`, or `BLOCK`. Keep a repair on the same
+   worker session and send only the delta. Start research only for a concrete
+   unresolved question.
+6. After acceptance, the owner performs the authorized commit or tracking
+   update and advances to the next unit.
 
-- Role: implementer, reviewer, tester, researcher, planner, or verifier.
-- Scope: files, repo, worktree, and allowed actions.
-- Boundaries: read-only, no commit, no push, no install, no external action, or one-writer rule as applicable.
-- Output: summary, files touched or inspected, commands run, test result, risks, and next required decision.
-- Stop condition: what to do when blocked, uncertain, or asked for approval.
+Default to one repair attempt unless the user or approved workflow sets another
+budget. A worker report is evidence, never acceptance.
 
-For long outputs from full-screen agents, prefer `agent read --source recent-unwrapped --lines N` after the agent is idle or done. If output remains incomplete, ask the worker to write a Markdown result file and report only its path.
+For the deterministic wait and compact result envelope, run:
 
-## When You Need Examples
+```sh
+python3 <skill-directory>/scripts/herdr_agent_turn.py \
+  --agent implementer --prompt-file /path/to/prompt.md
+```
 
-For concrete command patterns, role prompts, worktree layouts, and recovery recipes, read `references/orchestration-patterns.md`.
+The helper invokes the named Herdr agent exactly once; it contains no provider
+routing and never retries. Read
+[`references/handoff-contract.md`](references/handoff-contract.md) before
+constructing worker prompts. For ticket queues, research gates, repair rules,
+and `/goal`, read
+[`references/delegation-loop.md`](references/delegation-loop.md).
+
+## Lifecycle rules
+
+- `working`: wait without messaging or polling.
+- `blocked`: inspect once and request the necessary human decision; never
+  auto-approve.
+- `done` or `idle`: ready for handoff inspection or another prompt.
+- `unknown`: inconclusive; use `agent get` or `agent explain`, not acceptance.
+- `timeout` or `agent_prompt_stalled`: the prompt may have been delivered.
+  Inspect once before deciding; never resubmit automatically.
+
+Use pane commands for tests, servers, and ordinary processes. Use agent commands
+only for recognized agents. If a full response is unavailable, request a file
+path instead of repeatedly expanding terminal history.
+
+## Durable goals
+
+`/goal` is optional continuity for work that may outlive one owner turn. It is
+not a scheduler and does not justify polling. Keep the authoritative queue and
+checkpoint outside the conversation; resume from current ticket, accepted
+commits, open decision, and verification state rather than replaying transcripts.
+
+For topology, direct CLI alternatives, worktrees, and recovery examples, read
+[`references/orchestration-patterns.md`](references/orchestration-patterns.md).

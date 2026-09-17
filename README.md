@@ -10,7 +10,7 @@ Ogni skill è una cartella autonoma: puoi leggerla, copiarla e adattarla singola
 | [anti-ai-slop-writing](created-by-me/anti-ai-slop-writing/SKILL.md) | Rivedere la scrittura eliminando formule ripetitive e mantenendo contenuti concreti. | Da richiamare esplicitamente; edizione pubblica portabile. |
 | [effective-agent-skills](created-by-me/effective-agent-skills/SKILL.md) | Progettare, scrivere e revisionare skill e relative istruzioni. | Guida per il lavoro sui file `SKILL.md`. |
 | [engineering-orchestrator](created-by-me/engineering-orchestrator/SKILL.md) | Gestire una pipeline engineering con orchestratore, worker, review e verifica finale scelti dal proprietario. | Modalità Matt predefinita oppure `native` esplicita; include definizioni di agenti Codex da installare separatamente. |
-| [herdr-orchestration](created-by-me/herdr-orchestration/SKILL.md) | Orchestrare agenti di harness diverse con Herdr, pane persistenti, ruoli e worktree isolati. | Richiede Herdr; gli esempi che acquisiscono ID JSON richiedono anche `jq`. |
+| [herdr-orchestration](created-by-me/herdr-orchestration/SKILL.md) | Coordinare owner e worker di harness diverse con attese Herdr event-driven e handoff compatti. | Include un helper Python deterministico; gli esempi che acquisiscono ID JSON richiedono `jq`. |
 | [local-ai-hardware-advisor](created-by-me/local-ai-hardware-advisor/SKILL.md) | Valutare quali modelli AI locali sono compatibili con un computer e dimensionare eventuale nuovo hardware. | Usa probe locali read-only ed evidenze da model card; gli script richiedono solo Python 3. |
 | [pi-workflow-router](created-by-me/pi-workflow-router/SKILL.md) | Selezionare un workflow Matt per task di coding che richiedono routing. | Non si attiva su ogni richiesta; richiede separatamente `ask-matt` e i workflow di Matt Pocock. |
 
@@ -50,6 +50,7 @@ Il formato di riferimento è [Agent Skills](https://agentskills.io/specification
 | Codex | `~/.codex/skills/` |
 | Claude Code | `~/.claude/skills/` |
 | Pi | `~/.pi/agent/skills/` |
+| OpenCode | `~/.config/opencode/skills/` |
 
 Per esempio, una copia per Codex deve avere il percorso
 `~/.codex/skills/anti-ai-slop-writing/SKILL.md`.

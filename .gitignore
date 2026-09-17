@@ -47,7 +47,10 @@
 !/created-by-me/herdr-orchestration/LICENSE
 !/created-by-me/herdr-orchestration/SKILL.md
 !/created-by-me/herdr-orchestration/agents/openai.yaml
+!/created-by-me/herdr-orchestration/references/delegation-loop.md
+!/created-by-me/herdr-orchestration/references/handoff-contract.md
 !/created-by-me/herdr-orchestration/references/orchestration-patterns.md
+!/created-by-me/herdr-orchestration/scripts/herdr_agent_turn.py
 
 # local-ai-hardware-advisor
 !/created-by-me/local-ai-hardware-advisor/LICENSE
